@@ -6,8 +6,8 @@ const home = new Router();
 
 home.get("/", async (ctx) => {
 
-   
-    ctx.body = "页";
+
+    ctx.body = "HonkaiAcademyClubBacked";
 
     console.log(ctx.request.body);
 });

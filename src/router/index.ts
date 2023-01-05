@@ -19,4 +19,5 @@ router.use(
     ValidateUser.routes(),
     ValidateUser.allowedMethods()
 );
+router.redirect("/", "/home");
 export default router;
