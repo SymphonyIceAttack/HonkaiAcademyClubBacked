@@ -8,6 +8,7 @@
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "target": "ES2021",
+        "skipLibCheck": true
     },
     "include": ["./src/**/*"],
     "exclude": ["node_modules"],
