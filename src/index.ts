@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Koa from "koa";
 import router from "./router/index.js";
 import path from "path";
@@ -28,6 +30,7 @@ app.use(
     })
 );
 app.use(router.routes());
+
 app.listen(3000, () => {
     console.log("server is running http://localhost:3000");
 });

@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/router/ValidateUrl/index.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,YAAY,CAAC;AAEhC,MAAM,WAAW,GAAG,IAAI,MAAM,EAAE,CAAC;AACjC,WAAW,CAAC,IAAI,CAAC,GAAG,EAAE,CAAC,GAAG,EAAE,EAAE;IAC1B,GAAG,CAAC,IAAI,GAAG;QACP,MAAM,EAAE,GAAG;KACd,CAAC;AACN,CAAC,CAAC,CAAC;AACH,eAAe,WAAW,CAAC"}
