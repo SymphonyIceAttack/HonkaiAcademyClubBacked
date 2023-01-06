@@ -15,8 +15,10 @@ const app = new Koa();
 
 //捕获全局错误
 app.use(error());
+
 // 通过路由访问本地静态资源
-app.use(server(path.join(__dirname + "/assets")));
+app.use(server(path.join(__dirname + "../public")));
+
 //允许跨域
 app.use(cors());
 
@@ -26,6 +28,8 @@ app.use(
         formLimit: 524288000,
         formidable: {
             maxFieldsSize: 2000 * 1024 * 1024,
+            maxFileSize: 2000 * 1024 * 1024,
+            maxTotalFileSize: 2000 * 1024 * 1024,
         },
     })
 );
@@ -34,4 +38,3 @@ app.use(router.routes());
 app.listen(80, () => {
     console.log("server is running http://localhost:80");
 });
-

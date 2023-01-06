@@ -1,10 +1,10 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "email" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "nickname" TEXT NOT NULL,
     "account" TEXT NOT NULL,
-    "password" TEXT NOT NULL
+    "password" TEXT NOT NULL,
+    "MissingTimes" INTEGER NOT NULL DEFAULT 0
 );
 
 -- CreateTable
@@ -38,7 +38,10 @@ CREATE TABLE "MoeChapterImage" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "User_nickname_key" ON "User"("nickname");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_account_key" ON "User"("account");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "avatarImgage_userId_key" ON "avatarImgage"("userId");

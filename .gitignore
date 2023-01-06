@@ -4,4 +4,4 @@ node_modules
 .vercel
 dist
 __sapper__
-src/assets/staticSource/*
+public/staticSource/*

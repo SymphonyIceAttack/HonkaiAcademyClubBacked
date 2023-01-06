@@ -1,8 +1,8 @@
 {
     "builds": [
         {
-            "src":"package.json",
-            "use":"vercel-sapper"
+            "src": "package.json",
+            "use": "vercel-sapper"
         },
         {
             "src": "./index.js",
@@ -16,6 +16,7 @@
         }
     ],
     "outputDirectory": ".",
+    "public": true,
     "installCommand": "pnpm install",
     "env": {
         "DATABASE_URL": "file:./dev.db"
