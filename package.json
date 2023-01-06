@@ -7,7 +7,7 @@
   "scripts": {
     "prismaDev": "npx prisma migrate dev --schema=./public/prisma/schema.prisma",
     "dev": "nodemon  ./src/index.ts",
-    "build": "npx prisma migrate deploy --schema=./public/prisma/schema.prisma &&  npx prisma generate --schema=./public/prisma/schema.prisma && mkdir public/staticSource && tsc && ls"
+    "build": "npx prisma migrate deploy --schema=./public/prisma/schema.prisma &&  npx prisma generate --schema=./public/prisma/schema.prisma  && tsc && ls"
   },
   "dependencies": {
     "@prisma/client": "^4.5.0",
