@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const home = new Router();
 
 home.get("/", async (ctx) => {
-
+    console.log(await prisma.user.findMany());
 
     ctx.body = "HonkaiAcademyClubBacked";
 
