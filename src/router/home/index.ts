@@ -8,7 +8,10 @@ const home = new Router();
 home.get("/", async (ctx) => {
     // ctx.body = `HonkaiAcademyClubBacked${process.cwd()}`;
 
-    ctx.body = { path: fs.readdirSync(process.cwd()),public:fs.readdirSync(`${process.cwd()}/public/prisma`) };
+    ctx.body = {
+        path: fs.readdirSync(process.cwd()),
+        public: fs.readdirSync(`${process.cwd()}/public`),
+    };
 
     console.log(ctx.request.body);
 });

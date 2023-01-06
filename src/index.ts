@@ -9,9 +9,13 @@ import cors from "koa2-cors";
 import error from "./error/index.js";
 import { fileURLToPath } from "url";
 import fs from "fs";
-fs.mkdir("../public/staticSource", {
-    recursive: true,
-});
+fs.mkdir(
+    "../public/staticSource",
+    {
+        recursive: true,
+    },
+    () => {}
+);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
