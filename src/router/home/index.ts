@@ -1,16 +1,20 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 
-import fs from "fs";
+import fs from "fs/promises";
 const prisma = new PrismaClient();
 const home = new Router();
 
 home.get("/", async (ctx) => {
     // ctx.body = `HonkaiAcademyClubBacked${process.cwd()}`;
-
+    fs.mkdir(`${process.cwd()}/public/staticSource`, {
+        recursive: true,
+    }).then((res) => {
+        console.log(res);
+    });
     ctx.body = {
-        path: fs.readdirSync(process.cwd()),
-        public: fs.readdirSync(`${process.cwd()}/public`),
+        path: await fs.readdir(process.cwd()),
+        public: await fs.readdir(`${process.cwd()}/public`),
     };
 
     console.log(ctx.request.body);
