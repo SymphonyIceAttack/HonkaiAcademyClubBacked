@@ -33,7 +33,8 @@
     "nodemon": "^2.0.20",
     "prisma": "^4.5.0",
     "ts-node": "^10.4.0",
-    "typescript": "5.0.0-dev.20221229"
+    "typescript": "5.0.0-dev.20221229",
+    "vercel-sapper": "^0.44.0"
   },
   "devDependencies": {
     "@vercel/node": "^2.8.3",
