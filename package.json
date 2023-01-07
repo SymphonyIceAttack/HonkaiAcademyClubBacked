@@ -7,7 +7,7 @@
   "scripts": {
     "prismaDev": "npx prisma migrate dev && npx prisma generate",
     "dev": "nodemon  ./src/index.ts",
-    "build": ""
+    "build": "npx prisma migrate dev && npx prisma generate && tsc && nodemon ./dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "^4.5.0",

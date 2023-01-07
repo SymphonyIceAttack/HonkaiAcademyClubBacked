@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  honkaiacademyclubbacked:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "80:3000"
+    volumes:
+      - /usr/app/node_modules
+      - ./:/usr/app

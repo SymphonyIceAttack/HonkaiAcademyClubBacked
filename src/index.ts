@@ -36,6 +36,6 @@ app.use(
 );
 app.use(router.routes());
 
-app.listen(80, () => {
-    console.log("server is running http://localhost:80");
+app.listen(3000, () => {
+    console.log("server is running http://localhost:3000");
 });
