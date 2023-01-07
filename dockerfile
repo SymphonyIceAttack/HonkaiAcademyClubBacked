@@ -5,8 +5,9 @@ WORKDIR /usr/app
 
 
 COPY . .
-RUN npm --registry=https://registry.npm.taobao.org
-RUN npm install --legacy-peer-deps
+RUN npm install -g cnpm --registry=https://registry.npmmirror.com
+
+RUN cnpm install --save  --legacy-peer-deps --
 
 
 CMD [ "npm","run","build"]
