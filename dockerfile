@@ -5,9 +5,8 @@ WORKDIR /usr/app
 
 
 COPY . .
-RUN npm i pnpm -g
-RUN pnpm --registry=https://registry.npm.taobao.org
-RUN pnpm install --legacy-peer-deps
+RUN npm --registry=https://registry.npm.taobao.org
+RUN npm install --legacy-peer-deps
 
 
-CMD [ "pnpm","build"]
+CMD [ "npm","run","build"]
