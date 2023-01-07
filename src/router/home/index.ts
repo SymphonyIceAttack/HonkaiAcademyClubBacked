@@ -7,11 +7,7 @@ const home = new Router();
 
 home.get("/", async (ctx) => {
     // ctx.body = `HonkaiAcademyClubBacked${process.cwd()}`;
-    fs.mkdir(`${process.cwd()}/public/staticSource`, {
-        recursive: true,
-    }).then((res) => {
-        console.log(res);
-    });
+ 
     ctx.body = {
         path: await fs.readdir(process.cwd()),
         public: await fs.readdir(`${process.cwd()}/public`),

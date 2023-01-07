@@ -1,12 +1,11 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
-import * as jwt from "jwt-simple";
+import  jwt from "jwt-simple";
 export const secret = "adfsafsaifhdshakfhhue";
 const prisma = new PrismaClient();
 const Login = new Router();
 
 Login.post("/", async (ctx) => {
-    console.log(ctx.request.query);
     const query = ctx.request.query as {
         account: string;
         password: string;

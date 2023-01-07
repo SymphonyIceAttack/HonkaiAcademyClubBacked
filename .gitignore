@@ -3,4 +3,5 @@ node_modules
 .env
 .vercel
 dist
-__sapper__
+public/staticSource/*
+prisma/dev.db

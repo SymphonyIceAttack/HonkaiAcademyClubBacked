@@ -5,9 +5,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "prismaDev": "npx prisma migrate dev --schema=./public/prisma/schema.prisma",
+    "prismaDev": "npx prisma migrate dev && npx prisma generate",
     "dev": "nodemon  ./src/index.ts",
-    "build": "npx prisma migrate deploy --schema=./public/prisma/schema.prisma &&  npx prisma generate --schema=./public/prisma/schema.prisma  && tsc && ls"
+    "build": ""
   },
   "dependencies": {
     "@prisma/client": "^4.5.0",
