@@ -7,10 +7,10 @@
   "scripts": {
     "prismaDev": "npx prisma migrate dev && npx prisma generate",
     "dev": "nodemon  ./src/index.ts",
-    "build": "npx prisma migrate dev && npx prisma generate && tsc && nodemon ./dist/index.js"
+    "build": "npx prisma migrate dev && npx prisma generate && tsc && nodemon ./dist/index.js &&mkdir public"
   },
   "dependencies": {
-    "@prisma/client": "^4.5.0",
+    "@prisma/client": "4.8.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/koa": "^2.13.4",
     "@types/koa-bodyparser": "^4.3.5",
@@ -32,7 +32,7 @@
     "module-alias": "^2.2.2",
     "nanoid": "^4.0.0",
     "nodemon": "^2.0.20",
-    "prisma": "^4.5.0",
+    "prisma": "4.8.1",
     "ts-node": "^10.4.0",
     "typescript": "5.0.0-dev.20221229",
     "vercel-sapper": "^0.44.0"
