@@ -7,7 +7,7 @@ WORKDIR /usr/app
 COPY . .
 RUN npm i pnpm -g
 RUN pnpm --registry=https://registry.npm.taobao.org
-RUN pnpm install
+RUN pnpm install --force
 
 
 CMD [ "pnpm","build"]
