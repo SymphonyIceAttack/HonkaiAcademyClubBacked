@@ -4,12 +4,11 @@ FROM  node:alpine
 WORKDIR /usr/app
 
 
-COPY package.json .
+COPY . .
 RUN npm i pnpm -g
 RUN pnpm --registry=https://registry.npm.taobao.org
-RUN pnpm i
-RUN pnpm i -D @prisma/cli
+RUN pnpm i @prisma/cli
+RUN pnpm install
 
-COPY . .
 
-CMD [ "pnpm","build","" ]
+CMD [ "pnpm","build"]
