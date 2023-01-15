@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import Koa from "koa";
-import router from "./router/index.js";
+import router from "./router";
 import path from "path";
 import server from "koa-static";
 import { koaBody } from "koa-body";
 import cors from "koa2-cors";
-import error from "./error/index.js";
+import error from "./error";
+import { BeforeValidate } from "./middleware/BeforeValidate";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -34,6 +35,8 @@ app.use(
         },
     })
 );
+app.use(BeforeValidate);
+
 app.use(router.routes());
 
 app.listen(3000, () => {

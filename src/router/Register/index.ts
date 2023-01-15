@@ -1,9 +1,10 @@
 import Router from "koa-router";
 import fs from "fs/promises";
 import { PrismaClient } from "@prisma/client";
-import ValidateAccount from "./ValidateAccount.js";
-import getImageSourcePath from "../../utils/getImageSourcePath.js";
-import saveImageFile from "../../utils/saveImageFile.js";
+import ValidateAccount from "./ValidateAccount";
+import ValidateNickName from "./ValidateNickName";
+import getImageSourcePath from "../../utils/getImageSourcePath";
+import saveImageFile from "../../utils/saveImageFile";
 const prisma = new PrismaClient();
 const Register = new Router();
 type RegisterType = {
@@ -20,13 +21,13 @@ Register.post("/", async (ctx) => {
     };
     const RegisterParams = JSON.parse(json) as RegisterType;
     const ImageSourcePathRoot = `staticSource/${RegisterParams.account}`;
-    const isValidate = await ValidateAccount(RegisterParams.account);
-    isValidate &&
-        (await fs.mkdir(`${getImageSourcePath()}/${RegisterParams.account}`, {
+    const isAccountValidate = await ValidateAccount(RegisterParams.account);
+    const isNickNameValidate = await ValidateNickName(RegisterParams.nickname);
+    if (isAccountValidate && isNickNameValidate) {
+        await fs.mkdir(`${getImageSourcePath()}/${RegisterParams.account}`, {
             recursive: true,
-        }));
-    isValidate &&
-        (await prisma.user.create({
+        });
+        await prisma.user.create({
             data: {
                 account: RegisterParams.account,
                 password: RegisterParams.password,
@@ -53,34 +54,37 @@ Register.post("/", async (ctx) => {
                     },
                 },
             },
-        }));
-    isValidate &&
-        (await saveImageFile(
+        });
+        await saveImageFile(
             RegisterParams.avatarImage,
             "avatarImage",
             RegisterParams.account
-        ));
-    isValidate &&
-        (await saveImageFile(
+        );
+        await saveImageFile(
             RegisterParams.equipmentImage,
             "equipmentImage",
             RegisterParams.account
-        ));
-    isValidate &&
-        (await saveImageFile(
+        );
+        await saveImageFile(
             RegisterParams.MoeChapterImage,
             "MoeChapterImage",
             RegisterParams.account
-        ));
+        );
 
-    isValidate
-        ? (ctx.body = {
-              msg: "注册成功",
-              status: 200,
-          })
-        : (ctx.body = {
-              msg: "注册失败",
-              status: 205,
-          });
+        ctx.body = {
+            msg: "注册成功",
+            status: 200,
+        };
+    } else if (!isAccountValidate) {
+        ctx.body = {
+            msg: "账户已存在",
+            status: 205,
+        };
+    } else if (!isNickNameValidate) {
+        ctx.body = {
+            msg: "昵称已存在",
+            status: 206,
+        };
+    }
 });
 export default Register;

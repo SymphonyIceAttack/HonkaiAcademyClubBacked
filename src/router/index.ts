@@ -1,11 +1,13 @@
 import Router from "koa-router";
 
 const router = new Router();
-import home from "./home/index.js";
-import Login from "./Login/index.js";
-import Register from "./Register/index.js";
-import ValidateUrl from "./ValidateUrl/index.js";
-import ValidateUser from "./ValidateUser/index.js";
+import home from "./home/index";
+import Login from "./Login/index";
+import Register from "./Register/index";
+import ValidateUrl from "./ValidateUrl/index";
+import ValidateUser from "./ValidateUser/index";
+import ScoreList from "./ScoreList";
+import ScoreListUpdate from "./ScoreList/ScoreListUpdate";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());
@@ -19,5 +21,12 @@ router.use(
     ValidateUser.routes(),
     ValidateUser.allowedMethods()
 );
+router.use("/ScoreList", ScoreList.routes(), ScoreList.allowedMethods());
+router.use(
+    "/ScoreListUpdate",
+    ScoreListUpdate.routes(),
+    ScoreListUpdate.allowedMethods()
+);
 router.redirect("/", "/home");
+
 export default router;

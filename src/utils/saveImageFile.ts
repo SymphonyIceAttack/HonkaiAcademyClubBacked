@@ -1,5 +1,5 @@
 import { writeFile } from "fs/promises";
-import getImageSourcePath from "./getImageSourcePath.js";
+import getImageSourcePath from "./getImageSourcePath";
 
 type saveMsgType = {
     err: null | NodeJS.ErrnoException;

@@ -1,7 +1,7 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jwt-simple";
-import { secret } from "../Login/index.js";
+import getSerect from "../../utils/getSerect";
 import { nanoid } from "nanoid";
 const prisma = new PrismaClient();
 const ValidateUser = new Router();
@@ -11,7 +11,7 @@ ValidateUser.post("/", (ctx) => {
     const [, token] = Authorization.split(" ");
     if (token) {
         try {
-            const r = jwt.decode(token, secret);
+            const r = jwt.decode(token, getSerect());
             ctx.body = {
                 status: 200,
                 account: r,

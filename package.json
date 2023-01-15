@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "prismaDev": "npx prisma migrate dev && npx prisma generate",
-    "dev": "nodemon  ./src/index.ts",
-    "build": "npx prisma migrate deploy && npx prisma generate && tsc && nodemon ./dist/index.js && mkdir public"
+    "seed": "tsx ./src/seed.ts",
+    "dev": " cross-env NODE_ENV=development tsx  watch   ./src/index.ts",
+    "build": "npx prisma migrate deploy && npx prisma generate && tsc && tsx ./dist/index.js && mkdir public"
   },
   "dependencies": {
     "@prisma/client": "4.8.1",
@@ -33,6 +34,7 @@
     "nanoid": "^4.0.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
+    "tsx": "^3.12.1",
     "typescript": "^4.9.4",
     "vercel-sapper": "^0.44.0"
   },

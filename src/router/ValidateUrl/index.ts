@@ -6,4 +6,5 @@ ValidateUrl.post("/", (ctx) => {
         status: 200,
     };
 });
+
 export default ValidateUrl;

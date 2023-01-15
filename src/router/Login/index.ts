@@ -1,7 +1,7 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
-import  jwt from "jwt-simple";
-export const secret = "adfsafsaifhdshakfhhue";
+import jwt from "jwt-simple";
+import getSerect from "../../utils/getSerect";
 const prisma = new PrismaClient();
 const Login = new Router();
 
@@ -17,7 +17,7 @@ Login.post("/", async (ctx) => {
         },
     });
     if (user.length === 1) {
-        const token = jwt.encode(query.account, secret);
+        const token = jwt.encode(query.account, getSerect());
         ctx.body = {
             status: 200,
             msg: "Ok",
