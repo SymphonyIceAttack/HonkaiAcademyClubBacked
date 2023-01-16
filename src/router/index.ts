@@ -8,6 +8,7 @@ import ValidateUrl from "./ValidateUrl/index";
 import ValidateUser from "./ValidateUser/index";
 import ScoreList from "./ScoreList";
 import ScoreListUpdate from "./ScoreList/ScoreListUpdate";
+import LeaderBoard from "./LeaderBoard";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());
@@ -27,6 +28,7 @@ router.use(
     ScoreListUpdate.routes(),
     ScoreListUpdate.allowedMethods()
 );
+router.use("/LeaderBoard", LeaderBoard.routes(), LeaderBoard.allowedMethods());
 router.redirect("/", "/home");
 
 export default router;
