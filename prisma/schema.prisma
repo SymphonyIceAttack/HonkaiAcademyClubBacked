@@ -11,15 +11,16 @@ datasource db {
 }
 
 model User {
-  id              String            @id @default(uuid())
-  nickname        String            @unique
-  account         String            @unique
-  password        String
-  MissingTimes    Int               @default(0)
-  Attendance      Int               @default(0)
-  avatarImage     avatarImgage?
-  equipmentImage  equipmentImage?
-  MoeChapterImage MoeChapterImage?
+  id                    String                  @id @default(uuid())
+  nickname              String                  @unique
+  account               String                  @unique
+  password              String
+  MissingTimes          Int                     @default(0)
+  Attendance            Int                     @default(0)
+  avatarImage           avatarImgage?
+  equipmentImage        equipmentImage?
+  MoeChapterImage       MoeChapterImage?
+  attendanceRecordSheet attendanceRecordSheet[]
 }
 
 model avatarImgage {
@@ -47,4 +48,12 @@ model MoeChapterImage {
   mimeType String
   user     User   @relation(fields: [userId], references: [id])
   userId   String @unique
+}
+
+model attendanceRecordSheet {
+  id        String  @id @default(uuid())
+  timeStamp String
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  isMiss    Boolean
 }

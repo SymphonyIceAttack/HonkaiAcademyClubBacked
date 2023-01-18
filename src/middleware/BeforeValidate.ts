@@ -31,13 +31,14 @@ export const BeforeValidate: Koa.Middleware<
                 account: string;
             };
             const account = jwt.decode(token, getSerect());
-            
 
             if (query.account !== account) {
                 throw new Error("没有权限");
             }
             await next();
         } catch (e) {
+            console.log(e);
+
             ctx.body = {
                 status: 401,
                 data: "没有权限",

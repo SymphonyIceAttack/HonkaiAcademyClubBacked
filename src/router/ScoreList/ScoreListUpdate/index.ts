@@ -1,30 +1,59 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 import { nanoid } from "nanoid";
+import ValidateTimeStamp from "../ValidateTimeStamp";
 const prisma = new PrismaClient();
 const ScoreListUpdate = new Router();
 export interface ScoreItemType {
     NickName: string;
     Account: string;
     MissingTimes: number;
-    isFinished: boolean;
+    isMissed: boolean;
+
+    timeStamp: number;
+
+    recordId: string;
+    userId: string;
 }
 
 ScoreListUpdate.post("/", async (ctx) => {
-    const ScoreList = JSON.parse(ctx.request.body) as ScoreItemType[];
+    const { choseTimeStamp } = ctx.request.query as {
+        choseTimeStamp: string;
+    };
 
-    await Promise.all(
-        ScoreList.map(async (item) => {
-            return prisma.user.update({
-                where: {
-                    account: item.Account,
-                },
-                data: {
-                    MissingTimes: item.MissingTimes + (item.isFinished ? 1 : 0),
-                },
-            });
-        })
+    const ScoreList = JSON.parse(ctx.request.body) as ScoreItemType[];
+    const [isValidateTimeStamp, Records] = await ValidateTimeStamp(
+        choseTimeStamp
     );
+    console.log(isValidateTimeStamp, choseTimeStamp);
+    console.log(ScoreList);
+
+    if (isValidateTimeStamp) {
+        await Promise.all(
+            ScoreList.map(async (item) => {
+                return prisma.attendanceRecordSheet.update({
+                    where: {
+                        id: item.recordId,
+                    },
+                    data: {
+                        isMiss: item.isMissed,
+                    },
+                });
+            })
+        );
+    } else {
+        await Promise.all(
+            ScoreList.map(async (item) => {
+                return prisma.attendanceRecordSheet.create({
+                    data: {
+                        isMiss: item.isMissed,
+                        userId: item.userId,
+                        timeStamp: choseTimeStamp,
+                    },
+                });
+            })
+        );
+    }
 
     ctx.body = {
         msg: "修改成功",
