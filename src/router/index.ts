@@ -9,8 +9,9 @@ import ValidateUser from "./ValidateUser/index";
 import ScoreList from "./ScoreList";
 import ScoreListUpdate from "./ScoreList/ScoreListUpdate";
 import LeaderBoard from "./LeaderBoard";
-import IllustratedBook from "./IllustratedBook";
+import IllustratedBook from "./home/IllustratedBook";
 import TimeStamp from "./TimeStamp";
+import EquipmentForecast from "./EquipmentForecast";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());
@@ -37,6 +38,11 @@ router.use(
     IllustratedBook.allowedMethods()
 );
 router.use("/TimeStamp", TimeStamp.routes(), TimeStamp.allowedMethods());
+router.use(
+    "/EquipmentForecast",
+    EquipmentForecast.routes(),
+    EquipmentForecast.allowedMethods()
+);
 router.redirect("/", "/home");
 
 export default router;

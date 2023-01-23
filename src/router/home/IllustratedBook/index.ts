@@ -8,7 +8,6 @@ IllustratedBook.get("/", async (ctx) => {
     const res: IllustratedBookItemType[] = await fetch(
         "https://api.redbean.tech/illustrate/all?server=merged"
     ).then((res) => res.json());
-    console.log(res);
 
     ctx.body = {
         status: 200,

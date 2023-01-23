@@ -25,9 +25,6 @@ ScoreListUpdate.post("/", async (ctx) => {
     const [isValidateTimeStamp, Records] = await ValidateTimeStamp(
         choseTimeStamp
     );
-    console.log(isValidateTimeStamp, choseTimeStamp);
-    console.log(ScoreList);
-
     if (isValidateTimeStamp) {
         await Promise.all(
             ScoreList.map(async (item) => {
