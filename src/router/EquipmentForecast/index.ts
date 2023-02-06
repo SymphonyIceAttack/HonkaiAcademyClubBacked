@@ -1,7 +1,7 @@
 import Router from "koa-router";
 import GetEquipmentForecastList from "./GetEquipmentForecastList";
 import GetPetForecastList from "./GetPetForecastList";
-
+import _ from "lodash";
 const EquipmentForecast = new Router();
 export type EquipmentItemType = {
     startTime: string;
@@ -11,28 +11,25 @@ export type EquipmentItemType = {
 
 EquipmentForecast.get("/", async (ctx) => {
     const PrincessForecastList = await GetEquipmentForecastList(
-        "https://redbean.tech/list/auto/high"
+        "https://redbean.tech/list/auto/high",
+        "公主"
     );
     const WitchForecastList = await GetEquipmentForecastList(
-        "https://redbean.tech/list/auto/custom"
+        "https://redbean.tech/list/auto/custom",
+        "魔女"
     );
     const MagicalGirlForecastList = await GetEquipmentForecastList(
-        "https://redbean.tech/list/auto/special"
+        "https://redbean.tech/list/auto/special",
+        "魔法"
     );
     const PetForecastList = await GetPetForecastList();
 
-    console.log(PetForecastList.length);
-    console.log(PrincessForecastList.length);
-    console.log(WitchForecastList.length);
-    console.log(MagicalGirlForecastList.length);
-
     const ALLForecastList = [
+        ...MagicalGirlForecastList,
         ...PrincessForecastList,
         ...WitchForecastList,
-        ...MagicalGirlForecastList,
         ...PetForecastList,
     ];
-
     ctx.body = {
         ALLForecastList,
         status: 200,

@@ -2,7 +2,10 @@ import GetPetMap from "./GetPetMap";
 import GetEquipmentForecastList from "./GetEquipmentForecastList";
 export default async () => {
     const PetMap = await GetPetMap();
-    return GetEquipmentForecastList("https://redbean.tech/list/auto/pet")
+    return GetEquipmentForecastList(
+        "https://redbean.tech/list/auto/pet",
+        "使魔"
+    )
         .then((res) => {
             return res.map((item) => {
                 if (PetMap[item.Equipment] === undefined)
@@ -11,7 +14,7 @@ export default async () => {
                         DateList: [],
                     };
                 return {
-                    Equipment: PetMap[item.Equipment],
+                    Equipment: PetMap[item.Equipment] + "-" + "使魔",
                     DateList: item.DateList,
                 };
             });

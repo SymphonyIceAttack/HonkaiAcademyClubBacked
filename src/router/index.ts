@@ -12,6 +12,7 @@ import LeaderBoard from "./LeaderBoard";
 import IllustratedBook from "./home/IllustratedBook";
 import TimeStamp from "./TimeStamp";
 import EquipmentForecast from "./EquipmentForecast";
+import { EquipMentSearch } from "./EquipMentEdit";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());
@@ -42,6 +43,11 @@ router.use(
     "/EquipmentForecast",
     EquipmentForecast.routes(),
     EquipmentForecast.allowedMethods()
+);
+router.use(
+    "/EquipMentSearch",
+    EquipMentSearch.routes(),
+    EquipMentSearch.allowedMethods()
 );
 router.redirect("/", "/home");
 
