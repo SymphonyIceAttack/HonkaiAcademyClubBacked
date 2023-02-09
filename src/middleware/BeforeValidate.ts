@@ -9,6 +9,11 @@ const allowpage = [
     "/register",
     "/validateBackedUrl",
     "/ValidateUser",
+    "/DecryptEquipMent",
+    "/EncryptEquipMent",
+    "/EquipMentSearch",
+    "/EquipmentForecast",
+    "/IllustratedBook",
 ];
 export const BeforeValidate: Koa.Middleware<
     Koa.DefaultState,

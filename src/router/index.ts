@@ -12,7 +12,11 @@ import LeaderBoard from "./LeaderBoard";
 import IllustratedBook from "./home/IllustratedBook";
 import TimeStamp from "./TimeStamp";
 import EquipmentForecast from "./EquipmentForecast";
-import { EquipMentSearch } from "./EquipMentEdit";
+import {
+    EquipMentSearch,
+    EncryptEquipMent,
+    DecryptEquipMent,
+} from "./EquipMentEdit";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());
@@ -48,6 +52,16 @@ router.use(
     "/EquipMentSearch",
     EquipMentSearch.routes(),
     EquipMentSearch.allowedMethods()
+);
+router.use(
+    "/EncryptEquipMent",
+    EncryptEquipMent.routes(),
+    EncryptEquipMent.allowedMethods()
+);
+router.use(
+    "/DecryptEquipMent",
+    DecryptEquipMent.routes(),
+    DecryptEquipMent.allowedMethods()
 );
 router.redirect("/", "/home");
 
