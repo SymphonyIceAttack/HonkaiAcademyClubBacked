@@ -2,12 +2,15 @@ import moment from "moment";
 import unique from "../../utils/uniqueArray";
 import type { EquipmentItemType } from "./index";
 import { RemoveApproximation } from "./RemoveApproximation";
+import fetch from "node-fetch";
+import { agent } from "../../GlobalFetchSetting/Agent";
 export default async (url: string, type: "公主" | "魔女" | "魔法" | "使魔") => {
     const ALLEquipmentsArr: string[] = [];
     const res = await fetch(url, {
         method: "Get",
+        agent,
     })
-        .then((res) => res.json())
+        .then((res) => res.json() as any)
         .then((res: EquipmentItemType[]) => {
             return res;
         });

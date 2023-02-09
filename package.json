@@ -8,7 +8,7 @@
     "prismaDev": "npx prisma migrate dev && npx prisma generate",
     "seed": "tsx ./src/seed.ts",
     "dev": " cross-env NODE_ENV=development tsx  watch   ./src/index.ts",
-    "build": "npx prisma migrate deploy && npx prisma generate && tsc && tsx ./dist/index.js && mkdir public"
+    "build": " tsc && tsx ./dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "4.8.1",
@@ -36,6 +36,7 @@
     "module-alias": "^2.2.2",
     "moment": "^2.29.4",
     "nanoid": "^4.0.0",
+    "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "tsx": "^3.12.1",

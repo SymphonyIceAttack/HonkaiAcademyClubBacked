@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import Koa from "koa";
 import router from "./router";
 import path from "path";

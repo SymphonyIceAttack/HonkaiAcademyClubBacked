@@ -5,8 +5,9 @@ type armsType = {
     baseType: string;
     type: string;
     clientId: string;
-    uid: string;
-    imgSrc: string;
+    equipMentUid: string;
+    ImgSrc: string;
+    cost: number;
 };
 
 type clothingType = {
@@ -14,8 +15,9 @@ type clothingType = {
     hpBase: string;
     type: string;
     clientId: string;
-    uid: string;
-    imgSrc: string;
+    equipMentUid: string;
+    ImgSrc: string;
+    cost: number;
 };
 
 type PetType = {
@@ -23,16 +25,18 @@ type PetType = {
     title: string;
     type: string;
     clientId: string;
-    uid: string;
-    imgSrc: string;
+    equipMentUid: string;
+    ImgSrc: string;
+    cost: number;
 };
 
 type badgeType = {
-    title: string;
     type: string;
     clientId: string;
-    uid: string;
-    imgSrc: string;
+    ImgSrc: string;
+    equipMentUid: string;
+    title: string;
+    cost: number;
 };
 export default (
     AllEquipMentList: EquipMentType[],
@@ -49,30 +53,36 @@ export default (
                 title: item.title,
                 clientId: currentClientId,
                 type: "武器",
-                uid: item.uid,
-                imgSrc: CreateImgSrc(item.uid),
+                equipMentUid: item.uid,
+                ImgSrc: CreateImgSrc(item.img),
+                cost: parseInt(item.cost),
             };
             armsEquipMentList.push(NewItem);
+            return
         }
-        if (item.hpBase !== undefined) {
+        if (item.hpBase !== undefined && parseInt(item.hpBase!) !== 0) {
             const NewItem: Omit<clothingType, "hpBase"> = {
                 title: item.title,
                 clientId: currentClientId,
                 type: "服装",
-                uid: item.uid,
-                imgSrc: CreateImgSrc(item.uid),
+                equipMentUid: item.uid,
+                ImgSrc: CreateImgSrc(item.img),
+                cost: parseInt(item.cost),
             };
             clothingEquipMentList.push(NewItem);
+            return
         }
         if (item.critRate !== undefined) {
             const NewItem: Omit<PetType, "critRate"> = {
                 title: item.title,
                 clientId: currentClientId,
                 type: "使魔",
-                uid: item.uid,
-                imgSrc: CreateImgSrc(item.uid),
+                equipMentUid: item.uid,
+                ImgSrc: CreateImgSrc(item.img),
+                cost: 0,
             };
             PetEquipMentList.push(NewItem);
+            return
         }
 
         if (
@@ -84,10 +94,12 @@ export default (
                 title: item.title,
                 clientId: currentClientId,
                 type: "徽章",
-                uid: item.uid,
-                imgSrc: CreateImgSrc(item.uid),
+                equipMentUid: item.uid,
+                ImgSrc: CreateImgSrc(item.img),
+                cost: parseInt(item.cost),
             };
             BadgeEquipMnetList.push(NewItem);
+            return
         }
     });
 

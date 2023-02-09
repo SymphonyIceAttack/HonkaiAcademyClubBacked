@@ -1,5 +1,7 @@
 import Router from "koa-router";
 import classifyType from "./classifyType";
+import fetch from "node-fetch";
+import { agent } from "../../../GlobalFetchSetting/Agent";
 import _ from "lodash";
 //baseType -> arms
 //hpBase -> clothing
@@ -12,12 +14,16 @@ export type EquipMentType = {
     critRate?: string;
     title: string;
     uid: string;
+    img: string;
+    cost: string;
 };
 export type EquipMentOneListType = {
     type: string;
     clientId: string;
     ImgSrc: string;
     equipMentUid: string;
+    title: string;
+    cost: number;
 };
 export type StringEquipMentType = "使魔" | "武器" | "徽章" | "服装";
 export const EquipMentSearch = new Router();
@@ -27,21 +33,20 @@ EquipMentSearch.post("/", async (ctx) => {
         currentClientId: string;
         inputSearch: string;
     };
-    const AllEquipMentList: EquipMentType[] = await fetch(
-        "https://api.redbean.tech/illustrate/all?server=merged"
-    ).then((res) => res.json());
-    const classifyEquipMentList = classifyType(
+    const AllEquipMentList: EquipMentType[] = (await fetch(
+        "https://api.redbean.tech/illustrate/all?server=merged",
+        { agent }
+    ).then((res) => res.json())) as any;
+    const classifyEquipMentList: EquipMentOneListType[] = classifyType(
         AllEquipMentList,
         type,
         currentClientId
     );
 
     ctx.body = {
-        SearchResultList: _.uniqBy(
-            classifyEquipMentList.filter((item) => {
-                return item.title.indexOf(inputSearch) !== -1;
-            }),
-            "title"
-        ),
+        SearchResultList: classifyEquipMentList.filter((item) => {
+            if (inputSearch === "") return true;
+            return item.title.indexOf(inputSearch) !== -1;
+        }),
     };
 });
