@@ -1,7 +1,7 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 import { nanoid } from "nanoid";
-import ValidateTimeStamp from "./ValidateTimeStamp";
+import ValidateTimeStamp from "./ValidateTimeStamp.js";
 const prisma = new PrismaClient();
 const ScoreList = new Router();
 

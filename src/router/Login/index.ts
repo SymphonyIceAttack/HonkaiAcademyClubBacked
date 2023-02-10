@@ -1,7 +1,7 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jwt-simple";
-import getSerect from "../../utils/getSerect";
+import getSerect from "../../utils/getSerect.js";
 const prisma = new PrismaClient();
 const Login = new Router();
 

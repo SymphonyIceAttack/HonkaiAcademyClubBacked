@@ -2,7 +2,7 @@ interface PetMap {
     [key: string]: string;
 }
 import fetch from "node-fetch";
-import { agent } from "../../GlobalFetchSetting/Agent";
+import { agent } from "../../GlobalFetchSetting/Agent.js";
 export default () => {
     return fetch("https://api.redbean.tech/illustrate/pet-map", {
         agent,

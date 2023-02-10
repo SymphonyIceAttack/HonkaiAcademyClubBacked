@@ -1,9 +1,10 @@
 import type Koa from "koa";
 import jwt from "jwt-simple";
-import getSerect from "../utils/getSerect";
+import getSerect from "../utils/getSerect.js";
 import { nanoid } from "nanoid";
 
 const allowpage = [
+    "/",
     "/home",
     "/login",
     "/register",
@@ -53,3 +54,4 @@ export const BeforeValidate: Koa.Middleware<
         return;
     }
 };
+export default BeforeValidate;

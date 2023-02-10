@@ -1,5 +1,5 @@
-import GetPetMap from "./GetPetMap";
-import GetEquipmentForecastList from "./GetEquipmentForecastList";
+import GetPetMap from "./GetPetMap.js";
+import GetEquipmentForecastList from "./GetEquipmentForecastList.js";
 export default async () => {
     const PetMap = await GetPetMap();
     return GetEquipmentForecastList(

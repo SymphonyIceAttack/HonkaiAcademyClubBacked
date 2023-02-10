@@ -1,9 +1,9 @@
 import moment from "moment";
-import unique from "../../utils/uniqueArray";
-import type { EquipmentItemType } from "./index";
-import { RemoveApproximation } from "./RemoveApproximation";
+import unique from "../../utils/uniqueArray.js";
+import type { EquipmentItemType } from "./index.js";
+import { RemoveApproximation } from "./RemoveApproximation.js";
 import fetch from "node-fetch";
-import { agent } from "../../GlobalFetchSetting/Agent";
+import { agent } from "../../GlobalFetchSetting/Agent.js";
 export default async (url: string, type: "公主" | "魔女" | "魔法" | "使魔") => {
     const ALLEquipmentsArr: string[] = [];
     const res = await fetch(url, {

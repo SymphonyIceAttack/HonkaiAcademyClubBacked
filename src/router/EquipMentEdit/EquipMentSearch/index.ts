@@ -1,7 +1,7 @@
 import Router from "koa-router";
-import classifyType from "./classifyType";
+import classifyType from "./classifyType.js";
 import fetch from "node-fetch";
-import { agent } from "../../../GlobalFetchSetting/Agent";
+import { agent } from "../../../GlobalFetchSetting/Agent.js";
 import _ from "lodash";
 //baseType -> arms
 //hpBase -> clothing

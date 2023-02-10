@@ -1,8 +1,8 @@
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jwt-simple";
-import getSerect from "../../utils/getSerect";
-import { nanoid } from "nanoid";
+import getSerect from "../../utils/getSerect.js";
+import { nanoid } from "nanoid"
 const prisma = new PrismaClient();
 const ValidateUser = new Router();
 

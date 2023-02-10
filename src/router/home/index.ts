@@ -6,12 +6,12 @@ const prisma = new PrismaClient();
 const home = new Router();
 
 home.get("/", async (ctx) => {
-    // ctx.body = `HonkaiAcademyClubBacked${process.cwd()}`;
- 
-    ctx.body = {
-        path: await fs.readdir(process.cwd()),
-        public: await fs.readdir(`${process.cwd()}/public`),
-    };
+    ctx.body = "HonkaiAcademyClubBacked";
+
+    // ctx.body = {
+    //     path: await fs.readdir(process.cwd()),
+    //     public: await fs.readdir(`${process.cwd()}/public`),
+    // };
 
     console.log(ctx.request.body);
 });

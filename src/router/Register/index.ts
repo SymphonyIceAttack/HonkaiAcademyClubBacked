@@ -1,10 +1,10 @@
 import Router from "koa-router";
 import fs from "fs/promises";
 import { PrismaClient } from "@prisma/client";
-import ValidateAccount from "./ValidateAccount";
-import ValidateNickName from "./ValidateNickName";
-import getImageSourcePath from "../../utils/getImageSourcePath";
-import saveImageFile from "../../utils/saveImageFile";
+import ValidateAccount from "./ValidateAccount.js";
+import ValidateNickName from "./ValidateNickName.js";
+import getImageSourcePath from "../../utils/getImageSourcePath.js";
+import saveImageFile from "../../utils/saveImageFile.js";
 const prisma = new PrismaClient();
 const Register = new Router();
 type RegisterType = {

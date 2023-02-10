@@ -1,22 +1,22 @@
 import Router from "koa-router";
 
 const router = new Router();
-import home from "./home/index";
-import Login from "./Login/index";
-import Register from "./Register/index";
-import ValidateUrl from "./ValidateUrl/index";
-import ValidateUser from "./ValidateUser/index";
-import ScoreList from "./ScoreList";
-import ScoreListUpdate from "./ScoreList/ScoreListUpdate";
-import LeaderBoard from "./LeaderBoard";
-import IllustratedBook from "./home/IllustratedBook";
-import TimeStamp from "./TimeStamp";
-import EquipmentForecast from "./EquipmentForecast";
+import home from "./home/index.js";
+import Login from "./Login/index.js";
+import Register from "./Register/index.js";
+import ValidateUrl from "./ValidateUrl/index.js";
+import ValidateUser from "./ValidateUser/index.js";
+import ScoreList from "./ScoreList/index.js";
+import ScoreListUpdate from "./ScoreList/ScoreListUpdate/index.js";
+import LeaderBoard from "./LeaderBoard/index.js";
+import IllustratedBook from "./home/IllustratedBook/index.js";
+import TimeStamp from "./TimeStamp/index.js";
+import EquipmentForecast from "./EquipmentForecast/index.js";
 import {
     EquipMentSearch,
     EncryptEquipMent,
     DecryptEquipMent,
-} from "./EquipMentEdit";
+} from "./EquipMentEdit/index.js";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());

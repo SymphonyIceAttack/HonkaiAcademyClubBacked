@@ -1,5 +1,5 @@
 import type { EquipMentType, StringEquipMentType } from ".";
-import CreateImgSrc from "./CreateImgSrc";
+import CreateImgSrc from "./CreateImgSrc.js";
 type armsType = {
     title: string;
     baseType: string;
