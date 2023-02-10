@@ -5,7 +5,7 @@ export const DecryptEquipMent = new Router();
 DecryptEquipMent.post("/", (ctx) => {
     const MaskShare = ctx.request.body as string;
 
-    console.log(MaskShare);
+
 
     // Decrypt
     const bytes = CryptoJS.AES.decrypt(MaskShare, SecretKey);
