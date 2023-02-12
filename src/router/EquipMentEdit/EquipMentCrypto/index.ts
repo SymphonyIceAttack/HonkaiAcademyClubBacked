@@ -1,6 +1,7 @@
 import CryptoJS from "crypto-js";
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
+import { nanoid } from "nanoid";
 const prisma = new PrismaClient();
 export const SecretKey =
     "79540473-df1c-476a-ac85-4994a7a71af6-27747e3c-fa20-4bd4-b9d9-1427331f006c";
@@ -11,7 +12,7 @@ EncryptEquipMent.post("/", async (ctx) => {
     // Encrypt
     const ciphertext = CryptoJS.AES.encrypt(body, SecretKey).toString();
 
-    const equipMemntShare = await prisma.equipMemntShare.findUnique({
+    const equipMemntShare = await prisma.equipMemntShare.findFirst({
         where: {
             MaskShare: ciphertext,
         },
@@ -19,6 +20,7 @@ EncryptEquipMent.post("/", async (ctx) => {
     if (equipMemntShare === null) {
         const result = await prisma.equipMemntShare.create({
             data: {
+                id: nanoid(),
                 MaskShare: ciphertext,
             },
         });

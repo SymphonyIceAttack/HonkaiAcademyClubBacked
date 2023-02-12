@@ -7,7 +7,7 @@ export const DecryptEquipMent = new Router();
 DecryptEquipMent.post("/", async (ctx) => {
     const MaskShareID = ctx.request.body as string;
 
-    const equipMemntShare = await prisma.equipMemntShare.findUnique({
+    const equipMemntShare = await prisma.equipMemntShare.findFirst({
         where: {
             id: MaskShareID,
         },
@@ -22,6 +22,11 @@ DecryptEquipMent.post("/", async (ctx) => {
         const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
         ctx.body = {
             decryptedData,
+            status: 200,
+        };
+    } else {
+        ctx.body = {
+            decryptedData: null,
             status: 200,
         };
     }
