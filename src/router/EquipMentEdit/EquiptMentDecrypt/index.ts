@@ -1,18 +1,28 @@
 import CryptoJS from "crypto-js";
 import Router from "koa-router";
 import { SecretKey } from "../EquipMentCrypto/index.js";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 export const DecryptEquipMent = new Router();
-DecryptEquipMent.post("/", (ctx) => {
-    const MaskShare = ctx.request.body as string;
+DecryptEquipMent.post("/", async (ctx) => {
+    const MaskShareID = ctx.request.body as string;
 
+    const equipMemntShare = await prisma.equipMemntShare.findUnique({
+        where: {
+            id: MaskShareID,
+        },
+    });
 
-
-    // Decrypt
-    const bytes = CryptoJS.AES.decrypt(MaskShare, SecretKey);
-    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-
-    ctx.body = {
-        decryptedData,
-        status: 200,
-    };
+    if (equipMemntShare !== null) {
+        // Decrypt
+        const bytes = CryptoJS.AES.decrypt(
+            equipMemntShare.MaskShare,
+            SecretKey
+        );
+        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        ctx.body = {
+            decryptedData,
+            status: 200,
+        };
+    }
 });

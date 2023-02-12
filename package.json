@@ -8,7 +8,7 @@
     "prismaDev": "npx prisma migrate dev && npx prisma generate",
     "seed": "tsx ./src/seed.ts",
     "dev": " cross-env NODE_ENV=development tsx  watch   ./src/index.ts",
-    "build": "tsc && vercel --prod "
+    "build": "npx prisma migrate deploy && npx prisma generatei && tsc && vercel --prod"
   },
   "dependencies": {
     "@prisma/client": "4.8.1",
