@@ -1,5 +1,11 @@
 version: '3'
 
+networks:
+  backend:
+    driver: bridge # 可以让docker容器的互通 需要设置 - links postgres
+  frontend:
+    driver: bridge # 外网访问
+
 services:
   honkaiacademyclubbacked:
     build:
@@ -10,6 +16,9 @@ services:
     volumes:
       - /usr/app/node_modules
       - ./:/usr/app
+    networks:
+      - frontend
+      - backend
   postgres:
     image: postgres:12-alpine
     container_name: xybdiy_postgres
@@ -21,3 +30,6 @@ services:
       - 5432:5432
     volumes:
       - /root/PostgreSQL/data:/var/lib/postgresql/data
+    networks:
+      - frontend
+      - backend
