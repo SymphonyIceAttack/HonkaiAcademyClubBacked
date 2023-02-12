@@ -10,34 +10,27 @@ export const EncryptEquipMent = new Router();
 EncryptEquipMent.post("/", async (ctx) => {
     const body = ctx.request.body as string;
 
-    // Encrypt
-    const ciphertext = CryptoJS.AES.encrypt(body, SecretKey).toString();
-
     const equipMemntShare = await prisma.equipMemntShare.findFirst({
         where: {
-            MaskShare: ciphertext,
+            MaskShare: body,
         },
     });
     if (equipMemntShare === null) {
         const result = await prisma.equipMemntShare.create({
             data: {
                 id: nanoid(),
-                MaskShare: ciphertext,
+                MaskShare: body,
             },
         });
 
-        // Decrypt
-        const bytes = CryptoJS.AES.decrypt(ciphertext, SecretKey);
-        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        const decryptedData = JSON.parse(body);
         ctx.body = {
             ciphertext: result.id,
             decryptedData,
             status: 200,
         };
     } else {
-        // Decrypt
-        const bytes = CryptoJS.AES.decrypt(ciphertext, SecretKey);
-        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        const decryptedData = JSON.parse(body);
 
         ctx.body = {
             ciphertext: equipMemntShare.id,

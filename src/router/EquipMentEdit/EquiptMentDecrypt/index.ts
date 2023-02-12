@@ -14,12 +14,7 @@ DecryptEquipMent.post("/", async (ctx) => {
     });
 
     if (equipMemntShare !== null) {
-        // Decrypt
-        const bytes = CryptoJS.AES.decrypt(
-            equipMemntShare.MaskShare,
-            SecretKey
-        );
-        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        const decryptedData = JSON.parse(equipMemntShare.MaskShare);
         ctx.body = {
             decryptedData,
             status: 200,
