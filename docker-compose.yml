@@ -10,3 +10,14 @@ services:
     volumes:
       - /usr/app/node_modules
       - ./:/usr/app
+  postgres:
+    image: postgres:12-alpine
+    container_name: xybdiy_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: SymphonyIceAttack
+    ports:
+      - 5432:5432
+    volumes:
+      - /root/PostgreSQL/data:/var/lib/postgresql/data
