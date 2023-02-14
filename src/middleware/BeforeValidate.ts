@@ -15,6 +15,7 @@ const allowpage = [
     "/EquipMentSearch",
     "/EquipmentForecast",
     "/IllustratedBook",
+    "/FantasySkillALLImg",
 ];
 export const BeforeValidate: Koa.Middleware<
     Koa.DefaultState,
