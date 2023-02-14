@@ -25,10 +25,22 @@ FantasySkillALLImg.get("/", async (ctx) => {
     ctx.body = {
         FantasySkillALLImg: _.uniqBy(
             AllEquipMentList.filter((item) => {
-                return item.seriesText == "空想神话";
-            }).filter((item) => {
-                return item.title.length > 4 || item.title == "灾祸之兽";
-            }),
+                return (
+                    item.seriesText == "空想神话" ||
+                    item.title.indexOf("空想星灵") > -1
+                );
+            })
+                .filter((item) => {
+                    return item.title.length > 4 || item.title == "灾祸之兽";
+                })
+                .map((item) => {
+                    if (item.title.indexOf("空想星灵") > -1) {
+                        item.title = item.title.slice(0, 7);
+                        return item;
+                    } else {
+                        return item;
+                    }
+                }),
             "title"
         ).map((item) => {
             if (item.title == "灾祸之兽") {
