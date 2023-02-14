@@ -16,6 +16,7 @@ import {
     EquipMentSearch,
     EncryptEquipMent,
     DecryptEquipMent,
+    FantasySkillALLImg,
 } from "./EquipMentEdit/index.js";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
@@ -62,6 +63,11 @@ router.use(
     "/DecryptEquipMent",
     DecryptEquipMent.routes(),
     DecryptEquipMent.allowedMethods()
+);
+router.use(
+    "/FantasySkillALLImg",
+    FantasySkillALLImg.routes(),
+    FantasySkillALLImg.allowedMethods()
 );
 router.redirect("/", "/home");
 
