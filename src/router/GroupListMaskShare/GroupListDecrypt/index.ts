@@ -9,16 +9,16 @@ GroupListDecrypt.post("/", async (ctx) => {
     const { GroupMaskShare } = ctx.request.query as {
         GroupMaskShare: string;
     };
-    const FindMaskShare = await prisma.groupListShare.findMany({
+    const FindMaskShare = await prisma.grouplistshare.findFirst({
         where: {
             id: GroupMaskShare,
         },
     });
-    if (FindMaskShare.length === 0) {
+    if (FindMaskShare === null) {
         ctx.body = { MaskShare: null, status: 200 };
     } else {
         ctx.body = {
-            MaskShare: JSON.parse(FindMaskShare[0].MaskShare),
+            MaskShare: JSON.parse(FindMaskShare.MaskShare),
             status: 200,
         };
     }

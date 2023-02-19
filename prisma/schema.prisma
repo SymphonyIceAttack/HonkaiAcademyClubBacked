@@ -17,7 +17,7 @@ model EquipMemntShare {
   @@index([MaskShare], type: Hash)
 }
 
-model GroupListShare {
+model grouplistshare {
   id        String @id @default(uuid())
   MaskShare String
 
