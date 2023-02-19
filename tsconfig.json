@@ -5,8 +5,8 @@
         "strict": true,
         "lib": ["esnext", "dom"],
         "esModuleInterop": true,
-        "module": "ESNext",
-        "moduleResolution": "Node",
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
         "target": "ES2021",
         "skipLibCheck": true
     },
