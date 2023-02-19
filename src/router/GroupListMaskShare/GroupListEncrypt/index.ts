@@ -7,12 +7,12 @@ export const GroupListEncrypt = new Router();
 
 GroupListEncrypt.post("/", async (ctx) => {
     const GroupListMaskShare = ctx.request.body;
-    const FindMaskShare = await prisma.groupListShare.findFirst({
+    const FindMaskShare = await prisma.groupListShare.findMany({
         where: {
             MaskShare: GroupListMaskShare,
         },
     });
-    if (FindMaskShare === null) {
+    if (FindMaskShare.length===0) {
         const CreateMaskShare = await prisma.groupListShare.create({
             data: {
                 id: nanoid(),
@@ -21,6 +21,6 @@ GroupListEncrypt.post("/", async (ctx) => {
         });
         ctx.body = { MaskShare: CreateMaskShare.id, status: 200 };
     } else {
-        ctx.body = { MaskShare: FindMaskShare.id, status: 200 };
+        ctx.body = { MaskShare: FindMaskShare[0].id, status: 200 };
     }
 });
