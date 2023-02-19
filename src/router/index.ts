@@ -18,6 +18,10 @@ import {
     DecryptEquipMent,
     FantasySkillALLImg,
 } from "./EquipMentEdit/index.js";
+import {
+    GroupListEncrypt,
+    GroupListDecrypt,
+} from "./GroupListMaskShare/index.js";
 router.use("/home", home.routes(), home.allowedMethods());
 router.use("/login", Login.routes(), Login.allowedMethods());
 router.use("/register", Register.routes(), Register.allowedMethods());
@@ -68,6 +72,16 @@ router.use(
     "/FantasySkillALLImg",
     FantasySkillALLImg.routes(),
     FantasySkillALLImg.allowedMethods()
+);
+router.use(
+    "/GroupListEncrypt",
+    GroupListEncrypt.routes(),
+    GroupListEncrypt.allowedMethods()
+);
+router.use(
+    "/GroupListDecrypt",
+    GroupListDecrypt.routes(),
+    GroupListDecrypt.allowedMethods()
 );
 router.redirect("/", "/home");
 

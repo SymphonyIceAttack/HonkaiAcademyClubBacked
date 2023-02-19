@@ -16,6 +16,8 @@ const allowpage = [
     "/EquipmentForecast",
     "/IllustratedBook",
     "/FantasySkillALLImg",
+    "/GroupListEncrypt",
+    "/GroupListDecrypt",
 ];
 export const BeforeValidate: Koa.Middleware<
     Koa.DefaultState,

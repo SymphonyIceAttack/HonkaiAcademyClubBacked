@@ -48,7 +48,7 @@ export default (
     const PetEquipMentList: Omit<PetType, "critRate">[] = [];
     const BadgeEquipMnetList: badgeType[] = [];
     AllEquipMentList.forEach((item) => {
-        if (item.baseType !== undefined) {
+        if (item.type === "weapon") {
             const NewItem: Omit<armsType, "baseType"> = {
                 title: item.title,
                 clientId: currentClientId,
@@ -58,9 +58,9 @@ export default (
                 cost: parseInt(item.cost),
             };
             armsEquipMentList.push(NewItem);
-            return
+            return;
         }
-        if (item.hpBase !== undefined && parseInt(item.hpBase!) !== 0) {
+        if (item.type === "costume") {
             const NewItem: Omit<clothingType, "hpBase"> = {
                 title: item.title,
                 clientId: currentClientId,
@@ -70,9 +70,9 @@ export default (
                 cost: parseInt(item.cost),
             };
             clothingEquipMentList.push(NewItem);
-            return
+            return;
         }
-        if (item.critRate !== undefined) {
+        if (item.type === "pet") {
             const NewItem: Omit<PetType, "critRate"> = {
                 title: item.title,
                 clientId: currentClientId,
@@ -82,14 +82,10 @@ export default (
                 cost: 0,
             };
             PetEquipMentList.push(NewItem);
-            return
+            return;
         }
 
-        if (
-            item.hpBase === undefined &&
-            item.critRate === undefined &&
-            item.baseType === undefined
-        ) {
+        if (item.type === "passiveSkill") {
             const NewItem: badgeType = {
                 title: item.title,
                 clientId: currentClientId,
@@ -99,7 +95,7 @@ export default (
                 cost: parseInt(item.cost),
             };
             BadgeEquipMnetList.push(NewItem);
-            return
+            return;
         }
     });
 

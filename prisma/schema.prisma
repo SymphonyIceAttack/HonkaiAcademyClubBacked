@@ -13,6 +13,14 @@ datasource db {
 model EquipMemntShare {
   id        String @id @default(uuid())
   MaskShare String
+
+  @@index([MaskShare], type: Hash)
+}
+
+model GroupListShare {
+  id        String @id @default(uuid())
+  MaskShare String
+
   @@index([MaskShare], type: Hash)
 }
 

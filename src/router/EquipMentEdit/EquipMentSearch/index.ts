@@ -9,6 +9,7 @@ import _ from "lodash";
 //none -> badge
 
 export type EquipMentType = {
+    type:string;
     baseType?: string;
     hpBase?: string;
     critRate?: string;

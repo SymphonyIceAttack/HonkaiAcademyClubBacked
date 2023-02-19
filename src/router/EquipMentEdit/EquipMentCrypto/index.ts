@@ -1,4 +1,3 @@
-import CryptoJS from "crypto-js";
 import Router from "koa-router";
 import { PrismaClient } from "@prisma/client";
 import { customAlphabet } from "nanoid";
